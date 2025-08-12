@@ -1,0 +1,23 @@
+the goal of this project is to simplify the build system for lcurses (https://github.com/lcurses/lcurses) and update it to Lua 5.4
+
+tested on linux. should also work on windows through cygwin
+
+documentation can be found at: https://lcurses.github.io/lcurses/
+
+
+dependencies:
+	- luarocks
+	- gcc
+	- ncurses (+ headers)
+	- lua54 (+ headers)
+
+
+build + install process:
+	luarocks build
+
+
+there are 4 things I had to change in the src/ directory:
+	- in include/_helpers.c I have modified line 56, so that Lua 5.4 is supported
+	- removed static declaration of strlcpy() in include/strlcpy.c line 44 and line 51
+	- added config.h file
+	- removed include/compat-5.2.c and include/compat-5.2.h, because they are not needed
